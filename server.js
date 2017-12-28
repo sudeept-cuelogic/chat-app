@@ -18,7 +18,7 @@ server.listen(process.env.SERVER_PORT);
 
 io.on('connection', (socket) => {
   socket.on('send_msg', function(msg) {
-    console.log(msg);
+    io.emit('send_msg', msg);
   })
 });
 
