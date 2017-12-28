@@ -1,0 +1,24 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "debug": "node debug server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudeept-cuelogic/chat-app.git"
+  },
+  "author": "Sudeep Tarlekar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudeept-cuelogic/chat-app/issues"
+  },
+  "homepage": "https://github.com/sudeept-cuelogic/chat-app#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
+}
