@@ -1,21 +1,14 @@
 var dot = require('dotenv').config();
-var server = require('http').createServer(handler);
-var io = require('socket.io')(server);
-var fs = require('fs');
+var app = require('express')();
+var http = require('http').Server(app)
+var io = require('socket.io')(http);
 
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html', (err, data) => {
-    if (err) {
-      res.writeHead(500);
-      return res.end(`Internal server error ${err}`);
-    }
-    res.writeHead(200);
-    res.end(data);
-  });
-};
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
 
-server.listen(process.env.SERVER_PORT, function() {
-  console.log(`Server started at localhost:${server.address().port}`);
+http.listen(process.env.SERVER_PORT, function() {
+  console.log(`Server started at localhost:${http.address().port}`);
 });
 
 io.on('connection', (socket) => {
