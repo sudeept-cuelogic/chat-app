@@ -14,7 +14,9 @@ function handler (req, res) {
   });
 };
 
-server.listen(process.env.SERVER_PORT);
+server.listen(process.env.SERVER_PORT, function() {
+  console.log(`Server started at localhost:${server.address().port}`);
+});
 
 io.on('connection', (socket) => {
   socket.on('send_msg', function(msg) {
@@ -22,4 +24,3 @@ io.on('connection', (socket) => {
   })
 });
 
-console.log('Server started at localhost:3000');
