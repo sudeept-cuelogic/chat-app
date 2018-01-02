@@ -80,3 +80,10 @@ exports.create = function(args) {
     emp._saveSuccess;
   });
 }
+
+exports.searchBy = function(args) {
+  Employee.find(args, function(err, res) {
+    if (err) { console.log('Error occured while searching', err) }
+    console.log(res);
+  })
+}
