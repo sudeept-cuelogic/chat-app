@@ -3,21 +3,20 @@ var app = require('express')();
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 
-var db = require('./database.js');
-var Employee = require('./employee.js')
+var db = require('./db/database.js');
+var Employee = require('./models/employee.js')
 
-var emp1 = Employee.new({firstName: 'Sudeep', lastName: 'Tarlekar'});
-console.log('the full name is', emp1.getFullName())
+Employee.create({firstName: 'Sudeep', lastName: 'Tarlekar'})
 
 app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/employee', function(req, res) {
   console.log('serving employee')
-  res.render(__dirname + '/employee.pug');
+  res.render(__dirname + '/views/employee.pug');
 });
 
 app.post('/employee/create', function(req, res) {
