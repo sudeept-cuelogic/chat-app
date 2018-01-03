@@ -1,11 +1,11 @@
 var database = require('../db/database.js')
 
 var employeeSchema = database.mongoose.Schema({
-  firstName: String,
-  lastName: String,
-  username: String,
-  email: String,
-  phone: String
+  firstName: {type: String, required: true },
+  lastName: {type: String, required: true },
+  username: {type: String, required: true, unique: true },
+  email: {type: String, required: true, unique: true },
+  phone: {type: Number, required: true, unique: true }
 });
 
 employeeSchema.methods.getFirstName = function() {
@@ -76,8 +76,11 @@ exports.new = function(args) {
 
 exports.create = function(args) {
   new Employee(args).save(function(err, emp) {
-    if (err) { console.log('Error occured while saving data', err) }
-    emp._saveSuccess;
+    if (err) {
+      console.log('Error occured while saving data', err);
+    } else {
+      emp._saveSuccess;
+    }
   });
 }
 

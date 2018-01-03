@@ -7,8 +7,6 @@ var io = require('socket.io')(http);
 var db = require('./db/database.js');
 var Employee = require('./models/employee.js');
 
-Employee.searchBy({ firstName: 'Sudeep' });
-
 app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({
     extended: true
@@ -25,7 +23,7 @@ app.get('/', function(req, res) {
 app.post('/employeeCreate', function(req, res) {
   Employee.create(req.body);
   res.writeHead(200, { 'Content-Type': 'text/html' })
-  res.end('Employee Created successfully')
+  res.end()
 });
 
 app.get('/employee', function(req, res) {
